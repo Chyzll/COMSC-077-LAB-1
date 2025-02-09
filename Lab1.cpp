@@ -26,6 +26,17 @@ bool isValidBinary(string num) {
     }
     return !num.empty();
 }
+//Kristine
+//Function to convert decimal to binary
+string decimalToBinary(int decimal) {
+    string binary = "";
+    while (decimal > 0) {
+        binary = (char)(decimal % 2 + '0') + binary; //calculates the remainder of dividing decimal number by 2
+        decimal /= 2; //decimal number is divided by 2 using divison
+    } //the process of division continues until it hits 0
+    return binary.empty() ? "0" : binary; // If no binary digit, return "0"
+}
+
 
 
 int main() {
@@ -94,7 +105,16 @@ int main() {
         }
 
     } while (validInput == false);
+    if (typeInput == "D" || typeInput == "d") {
+        int decimalValue = stoi(valueInput); // Convert integer to string
+        string binaryValue = decimalToBinary(decimalValue);
+        cout << "The binary number " << decimalValue << " is: " << binaryValue << endl;
+    }
+
 
     // Do something after?
     cout << "Reached the end of the program for now! \n";
+
+  
+    
 }
