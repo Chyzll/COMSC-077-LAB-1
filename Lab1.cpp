@@ -79,6 +79,60 @@ int binaryToDecimal(const string& binary) {
 
     return decimal;
 }
+//Function to convert binary to hexadecimal
+int binaryToHexNum(string binary) {
+    int decimal = 0;
+
+    //Convert binary to decimal number
+    for (int i = 0; i < 4; ++i) {
+        if (binary[i] == '1') {
+            decimal += (1 << (3 - i));  //adds power of 2 to decimal value
+        }
+    }
+
+    // Convert decimal to hexadecimal
+    if (decimal < 10) {
+        return '0' + decimal;  //[0-9 Values]
+    } else {
+        return 'A' + (decimal - 10);  // [A-F Values]
+    }
+}
+
+string binaryToHex(string binary) {
+    int n = binary.length();
+    // add zeros to make sure the length a multiple of 4
+    if (n % 4 != 0) {
+        int length = 4 - (n % 4);
+        binary = string(length, '0') + binary;
+    }
+
+    string hex = "";
+    // A loop that goes through length in chunks of 4
+    for (int i = 0; i < binary.length(); i += 4) {
+        string nibble = binary.substr(i, 4); //contains 4 characters
+        hex += binaryToHexNum(nibble); //convert 4 bits to hexadigit equivalent
+    }
+
+    return hex;
+}
+
+
+// Function to convert binary to octal
+string binaryToOctal(string binary) {
+
+    int n = binary.length();
+    if (n % 3 != 0) { //check if length is not divisible by 3
+        int Length = 3 - (n % 3); // ensure that length is a multiple of 3
+        binary = string(Length, '0') + binary; // add zeros at the beginning
+    }
+
+    //Convert binary to decimal
+    int decimal = binaryToDecimal(binary);
+
+    //Convert decimal to octal
+    return decimalToOctal(decimal);
+}
+
 
 
 int main() {
@@ -118,21 +172,27 @@ int main() {
         string binaryValue = decimalToBinary(decimalValue); //implemet conversion
         string octalValue = decimalToOctal(decimalValue);
         string hexaValue = decimalToHex(decimalValue);
-        cout << "The binary number " << decimalValue << " is: " << binaryValue << endl; //displays value
-        cout << "The octal number  " << decimalValue << " is: " << octalValue <<endl;
-        cout << "The hexadecimal number " << decimalValue << " is: " <<hexaValue <<endl;
+       cout << "The binary number is: " << binaryValue << endl; //displays value
+        cout << "The octal number is: " << octalValue <<endl;
+        cout << "The hexadecimal number is: " <<hexaValue <<endl;
     }
  
     if (typeInput == "B" || typeInput == "b") {
         int decimalValue = binaryToDecimal(valueInput); //convert integer to string
-        cout << "The decimal number " << valueInput << " is: " << decimalValue << endl;
+      string hex = binaryToHex(valueInput); //Will  convert binary to hexadecimal
+         string octal = binaryToOctal(valueInput); //Will convert binary to octal
+        cout << "The decimal value is: " << decimalValue << endl;
+        cout << "the hexadecimal value: " << hex << endl;
+        cout << "The octal value is: " << octal << endl;
+        
+    }
+     // Do something after?
+    cout << "Reached the end of the program for now! \n";
+
     }
 
 
 
-    // Do something after?
-    cout << "Reached the end of the program for now! \n";
-
   
     
-}
+
