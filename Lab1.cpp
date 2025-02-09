@@ -31,8 +31,8 @@ bool isValidBinary(string num) {
 string decimalToBinary(int decimal) {
     string binary = "";
     while (decimal > 0) {
-        binary = (char)(decimal % 2 + '0') + binary; //calculates the remainder of dividing decimal number by 2
-        decimal /= 2; //decimal number is divided by 2 using divison
+        binary = (char)(decimal % 2 + '0') + binary; //produces the remainder of decimal number when it's divided by 2
+        decimal /= 2; 
     } //the process of division continues until it hits 0
     return binary.empty() ? "0" : binary; // If no binary digit, return "0"
 }
