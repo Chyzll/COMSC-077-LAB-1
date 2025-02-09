@@ -16,7 +16,7 @@ bool isValidDecimal(string num) {
     for (int i = 0; i < num.length(); i++) {
         if (num[i] < '0' || num[i] > '9') return false;
     }
-    return !num.empty();
+    return true;
 }
 
 // Function to validate a binary number
@@ -24,7 +24,7 @@ bool isValidBinary(string num) {
     for (int i = 0; i < num.length(); i++) {
         if (num[i] != '0' && num[i] != '1') return false;
     }
-    return !num.empty();
+    return true;
 }
 //Kristine
 //Function to convert decimal to binary
@@ -95,41 +95,7 @@ int main() {
         // [Specify Type]
         cout << "What type of number is this? [B]inary / [D]ecimal: \n";
         getline(cin, typeInput);
-    /*
-        // Valid Input Check
-        bool fail = false;
-        
-        /* this section of code doesn't work as intended
-
-        if (typeInput == "B" || typeInput == "D") { // check if the typeInput is "B" or "D"
-            if (typeInput == "B") { // Binary validity check
-                for (char character : valueInput) {
-                    cout << character + "\n";
-                    if (!(binaryValidityString.find(character))) { // check if the single string character[0, 1, .] is NOT within the bigger preset string
-                        fail = true;
-                    }
-                }
-            } else { // Decimal validity check
-                for (char character : valueInput) {
-                    cout << character + "\n";
-                    if (!(decimalValidityString.find(character))) { // check if the single string number[0, 1, 2, 3, ...] is NOT within the bigger preset string
-                        fail = true;
-                    }
-                }
-            }
-        } else { // failed the typeInput check
-            fail = true;
-        } 
-
-     
-
-        // if input valid, end loop or restart loop
-        if (fail == false) {
-            validInput = true;
-        } else {
-            cout << "Invalid input please reenter your inputs! \n";
-        }
-*/
+    
         if (typeInput == "B" || typeInput == "b") {
             if (!isValidBinary(valueInput)) {
                 cout << "Invalid binary number! Please enter only 0s and 1s.\n";
