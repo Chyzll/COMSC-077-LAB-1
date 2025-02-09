@@ -51,7 +51,7 @@ string decimalToOctal(int decimal) {
 string decimalToHex(int decimal) {
     if (decimal == 0) return "0";
     string hex = "";
-    const string hexDigits = "0123456789ABCDEF"; //A=10 B=11 C=12 D=13 E=14 F=15
+    const string hexDigits = "0123456789ABCDEF"; //Unchangeable values; A=10 B=11 C=12 D=13 E=14 F=15
     while (decimal > 0) {
         hex = hexDigits[decimal % 16] + hex; //produces the remainder of decimal number when it's divided by 16
         decimal /= 16;
