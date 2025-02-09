@@ -34,8 +34,33 @@ string decimalToBinary(int decimal) {
         binary = (char)(decimal % 2 + '0') + binary; //produces the remainder of decimal number when it's divided by 2
         decimal /= 2; 
     } //the process of division continues until it hits 0
-    return binary.empty() ? "0" : binary; // If no binary digit, return "0"
+    return binary.empty() ? "0" : binary; // If empty, return "0"
 }
+
+//Function to convert decimal to octal
+string decimalToOctal(int decimal) {
+    string octal = "";
+    while (decimal > 0) {
+        octal = (char)(decimal % 8 + '0') + octal; //produces the remainder of decimal number when it's divded by 8
+        decimal /= 8;
+    }
+    return octal.empty() ? "0" : octal; //If empty return "0"
+}
+
+// Function to convert decimal to hexadecimal
+string decimalToHex(int decimal) {
+    if (decimal == 0) return "0";
+    string hex = "";
+    const string hexDigits = "0123456789ABCDEF"; //A=10 B=11 C=12 D=13 E=14 F=15
+    while (decimal > 0) {
+        hex = hexDigits[decimal % 16] + hex; //produces the remainder of decimal number when it's divided by 16
+        decimal /= 16;
+    }
+    return hex;
+}
+
+
+
 
 // Function to convert binary to decimal
 int binaryToDecimal(const string& binary) {
@@ -124,8 +149,12 @@ int main() {
     } while (validInput == false);
     if (typeInput == "D" || typeInput == "d") {
         int decimalValue = stoi(valueInput); // Convert integer to string
-        string binaryValue = decimalToBinary(decimalValue);
+        string binaryValue = decimalToBinary(decimalValue); //implemet conversion
+        string octalValue = decimalToOctal(decimalValue);
+        string hexaValue = decimalToHex(decimalValue);
         cout << "The binary number " << decimalValue << " is: " << binaryValue << endl;
+        cout << "The octal number  " << decimalValue << " is: " << octalValue <<endl;
+        cout << "The hexadecimal number " << decimalValue << " is: " <<hexaValue <<endl;
     }
  
     if (typeInput == "B" || typeInput == "b") {
