@@ -152,7 +152,7 @@ int main() {
         string binaryValue = decimalToBinary(decimalValue); //implemet conversion
         string octalValue = decimalToOctal(decimalValue);
         string hexaValue = decimalToHex(decimalValue);
-        cout << "The binary number " << decimalValue << " is: " << binaryValue << endl;
+        cout << "The binary number " << decimalValue << " is: " << binaryValue << endl; //displays value
         cout << "The octal number  " << decimalValue << " is: " << octalValue <<endl;
         cout << "The hexadecimal number " << decimalValue << " is: " <<hexaValue <<endl;
     }
