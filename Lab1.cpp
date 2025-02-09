@@ -37,6 +37,23 @@ string decimalToBinary(int decimal) {
     return binary.empty() ? "0" : binary; // If no binary digit, return "0"
 }
 
+// Function to convert binary to decimal
+int binaryToDecimal(const string& binary) {
+    int decimal = 0;
+
+    //Go over each character of the binary string
+    for (int i = 0; i < binary.length(); i++) {
+        // Shift decimal value one place to the left
+        decimal *= 2;
+
+        // If the current character is 1, add 1 to decimal number
+        if (binary[i] == '1') {
+            decimal += 1;
+        }
+    }
+
+    return decimal;
+}
 
 
 int main() {
@@ -110,6 +127,12 @@ int main() {
         string binaryValue = decimalToBinary(decimalValue);
         cout << "The binary number " << decimalValue << " is: " << binaryValue << endl;
     }
+ 
+    if (typeInput == "B" || typeInput == "b") {
+        int decimalValue = binaryToDecimal(valueInput); //convert integer to string
+        cout << "The decimal number " << valueInput << " is: " << decimalValue << endl;
+    }
+
 
 
     // Do something after?
