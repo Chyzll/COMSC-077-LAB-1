@@ -10,6 +10,24 @@
 #include <cctype>
 using namespace std; // removes need to type std:: all the time
 
+//Nitya
+// Function to validate a decimal number
+bool isValidDecimal(string num) {
+    for (int i = 0; i < num.length(); i++) {
+        if (num[i] < '0' || num[i] > '9') return false;
+    }
+    return !num.empty();
+}
+
+// Function to validate a binary number
+bool isValidBinary(string num) {
+    for (int i = 0; i < num.length(); i++) {
+        if (num[i] != '0' && num[i] != '1') return false;
+    }
+    return !num.empty();
+}
+
+
 int main() {
     string valueInput;
     string typeInput;
@@ -24,7 +42,7 @@ int main() {
         // [Specify Type]
         cout << "What type of number is this? [B]inary / [D]ecimal: \n";
         getline(cin, typeInput);
-
+    /*
         // Valid Input Check
         bool fail = false;
         
@@ -50,7 +68,7 @@ int main() {
             fail = true;
         } 
 
-        */
+     
 
         // if input valid, end loop or restart loop
         if (fail == false) {
@@ -58,6 +76,23 @@ int main() {
         } else {
             cout << "Invalid input please reenter your inputs! \n";
         }
+*/
+        if (typeInput == "B" || typeInput == "b") {
+            if (!isValidBinary(valueInput)) {
+                cout << "Invalid binary number! Please enter only 0s and 1s.\n";
+                continue;
+            }
+            validInput = true;
+        } else if (typeInput == "D" || typeInput == "d") {
+            if (!isValidDecimal(valueInput)) {
+                cout << "Invalid decimal number! Please enter only digits 0-9.\n";
+                continue;
+            }
+            validInput = true;
+        } else {
+            cout << "Invalid type selection! Enter 'B' for binary or 'D' for decimal.\n";
+        }
+
     } while (validInput == false);
 
     // Do something after?
