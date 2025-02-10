@@ -178,7 +178,7 @@ int main() {
     }
  
     if (typeInput == "B" || typeInput == "b") {
-        int decimalValue = binaryToDecimal(valueInput); //convert integer to string
+        int decimalValue = binaryToDecimal(valueInput); 
       string hex = binaryToHex(valueInput); //Will  convert binary to hexadecimal
          string octal = binaryToOctal(valueInput); //Will convert binary to octal
         cout << "The decimal value is: " << decimalValue << endl;
