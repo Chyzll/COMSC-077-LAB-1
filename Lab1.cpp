@@ -8,13 +8,19 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <cmath>
 using namespace std; // removes need to type std:: all the time
 
 //Nitya
 // Function to validate a decimal number
 bool isValidDecimal(string num) {
     for (int i = 0; i < num.length(); i++) {
-        if (num[i] < '0' || num[i] > '9') return false;
+        if (num[i] == '.') { // if it is a . period skip it and go to next iteration
+            continue;
+        }
+        if (num[i] < '0' || num[i] > '9') { // this is checking if any of the digits are less than 0 or greater than 9
+            return false;
+        }
     }
     return true;
 }
@@ -22,6 +28,9 @@ bool isValidDecimal(string num) {
 // Function to validate a binary number
 bool isValidBinary(string num) {
     for (int i = 0; i < num.length(); i++) {
+        if (num[i] == '.') { // if it is a . period skip it and go to next iteration
+            continue;
+        }
         if (num[i] != '0' && num[i] != '1') return false;
     }
     return true;
@@ -29,13 +38,35 @@ bool isValidBinary(string num) {
 
 //Kristine
 //Function to convert decimal to binary
-string decimalToBinary(int decimal) {
+string decimalToBinary(int decimalWhole, float decimalPeriod) {
     string binary = "";
-    while (decimal > 0) {
-        binary = (char)(decimal % 2 + '0') + binary; //produces the remainder of decimal number when it's divided by 2
-        decimal /= 2; 
+    string binaryPeriod = "";
+    while (decimalWhole > 0) {
+        binary = (char)(decimalWhole % 2 + '0') + binary; //produces the remainder of decimal number when it's divided by 2
+        decimalWhole /= 2; 
     } //the process of division continues until it hits 0
-    return binary.empty() ? "0" : binary; // If empty, return "0"
+
+    if (decimalPeriod != 0 && decimalPeriod < 1) {
+        while (decimalPeriod != 1) {
+            decimalPeriod *= 2; // multiply by 2
+            if (decimalPeriod == 1) {
+                break;
+            } else {
+                if (decimalPeriod > 1) {
+                    decimalPeriod = decimalPeriod - floor(decimalPeriod);
+                    binaryPeriod = binaryPeriod + "1";
+                } else {
+                    binaryPeriod = binaryPeriod + "0";
+                }
+            }
+        } //the process of division continues until it hits 1 exactly
+    }
+
+    if (binaryPeriod.empty()) {
+        return binary.empty() ? "0" : (binary); // If empty, return "0" 
+    } else {
+        return binary.empty() ? "0" : (binary + "." + binaryPeriod); // If empty, return "0"
+    }
 }
 
 //Function to convert decimal to octal
@@ -139,8 +170,6 @@ string binaryToOctal(string binary) {
 int main() {
     string valueInput;
     string typeInput;
-    string decimalValidityString = "0123456789.";
-    string binaryValidityString = "01.";
 
     bool validInput = false;
     do { // run until user gives valid input
@@ -169,8 +198,10 @@ int main() {
 
     } while (validInput == false);
     if (typeInput == "D" || typeInput == "d") {
-        int decimalValue = stoi(valueInput); //return integer values 
-        string binaryValue = decimalToBinary(decimalValue); //calling decimalToBinary function
+        float decimalValue = stof(valueInput); //return float values 
+        float decimalWholeValue = floor(decimalValue); // whole value before the decimal number ex 1
+        float decimalPeriodValue = (decimalValue - decimalWholeValue); // decimal value after the whole number ex 0.41
+        string binaryValue = decimalToBinary(decimalWholeValue, decimalPeriodValue); //calling decimalToBinary function
         string octalValue = decimalToOctal(decimalValue);//calling decimalToOctal function
         string hexaValue = decimalToHex(decimalValue);//calling decimalToHex function
        cout << "The binary number is: " << binaryValue << endl; //displays value
@@ -187,8 +218,8 @@ int main() {
         cout << "The octal value is: " << octal << endl;
         
     }
-     // Do something after?
-    cout << "Reached the end of the program for now! \n";
+     // End
+    cout << "Reached the end of the program! \n";
 
     }
 
